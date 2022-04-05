@@ -1,0 +1,8 @@
+.launch-ship{
+    width: 32%;
+    box-sizing: border-box;
+    border: 1px solid silver;
+    text-align: center;
+    padding: 15px;
+    box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 18px 18px 23px 10px rgba(0,0,0,0.45);
+}

@@ -1,7 +1,9 @@
+import LaunchingShips from './components/LaunchingShips/LaunchingShips';
+
 function App() {
     return (
-        <div className="App">
-
+        <div>
+            <LaunchingShips/>
         </div>
     );
 }
