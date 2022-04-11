@@ -1,0 +1,15 @@
+.flex{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.content {
+    width: 75%;
+}
+
+.column-left {
+    width: 25%;
+}

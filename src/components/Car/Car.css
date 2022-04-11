@@ -1,0 +1,25 @@
+.car-box {
+    width: 19%;
+    padding: 15px;
+    border: 1px solid silver;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px 0 #000000, inset 4px 4px 15px 0 #000000, 8px 7px 28px 15px rgba(0, 0, 0, 0.55);
+}
+
+.car-box-btn {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+}
+
+.car-box-btn button {
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px 0 #000000, inset 4px 4px 10px 0 #000000, 8px 7px 28px 15px rgba(0, 0, 0, 0.55);
+    background: linear-gradient(orangered, orange);
+    cursor: pointer;
+}
+
+.car-box-btn button:hover {
+    background: linear-gradient(orange, orangered);
+}
