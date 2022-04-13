@@ -1,8 +1,8 @@
 import './Car.css';
 import {carService} from '../../services';
 
-const Car = ({car, cars, setCars}) => {
-    const {model, year, price} = car;
+const Car = ({car, cars, setCars, setCarForUpdate}) => {
+    const {id, model, year, price} = car;
 
     const deleteCar = async (id) => {
         await carService.deleteCar(id);
@@ -15,8 +15,8 @@ const Car = ({car, cars, setCars}) => {
             <h3>Year: {year}</h3>
             <h3>Price: {price}</h3>
             <div className={'car-box-btn'}>
-                <button onClick={() => deleteCar(car.id)}>DELETE</button>
-                <button>UPDATE</button>
+                <button onClick={() => deleteCar(id)}>DELETE</button>
+                <button onClick={() => setCarForUpdate(car)}>UPDATE</button>
             </div>
         </div>
     );

@@ -4,7 +4,7 @@ import {carService} from '../../services';
 import {Car} from '../Car/Car';
 import './Cars.css';
 
-const Cars = ({newCar}) => {
+const Cars = ({newCar, setCarForUpdate, updatedCar}) => {
     const [cars, setCars] = useState([]);
 
     useEffect(() => {
@@ -15,11 +15,18 @@ const Cars = ({newCar}) => {
         if (newCar) {
             setCars(prevState => [...prevState, newCar])
         }
-    }, [newCar])
+        if (updatedCar) {
+            const car = cars.find(car => car.id === updatedCar.id);
+            Object.assign(car, updatedCar);
+            setCars([...cars]);
+
+        }
+    }, [cars, newCar, updatedCar])
 
     return (
         <div className={'cars-box'}>
-            {cars.map(car =><Car key={car.id} cars={cars} car={car} setCars={setCars}/>)}
+            {cars.map(car => <Car key={car.id} cars={cars} car={car} setCars={setCars}
+                                  setCarForUpdate={setCarForUpdate}/>)}
         </div>
     );
 };

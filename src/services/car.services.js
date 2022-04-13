@@ -6,8 +6,7 @@ const carService = {
     getCarById: (id) => axiosService.get(`${urls.cars}/${id}`),
     createCar: (car) => axiosService.post(urls.cars, car),
     deleteCar: (id) => axiosService.delete(`${urls.cars}/${id}`),
-    updateCar: (carToUpdate)=> axiosService.put(urls.cars, carToUpdate)
-
+    updateCar: (id, carToUpdate) => axiosService.put(`${urls.cars}/${id}`, carToUpdate)
 };
 
 export {carService};
