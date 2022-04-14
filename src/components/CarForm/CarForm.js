@@ -1,12 +1,19 @@
 import {useForm} from 'react-hook-form';
+import {useEffect} from 'react';
+import {joiResolver} from '@hookform/resolvers/joi';
 
 import './CarForm.css'
 import {carService} from '../../services';
-import {useEffect, useState} from 'react';
+import {carValidator} from '../../validators';
 
 const CarForm = ({setNewCar, carForUpdate, setCarForUpdate, setUpdatedCar}) => {
-    const [error, setError] = useState({});
-    const {register, reset, handleSubmit, setValue} = useForm();
+    const {
+        register,
+        reset,
+        handleSubmit,
+        setValue,
+        formState: {errors}
+    } = useForm({resolver: joiResolver(carValidator)});
     const onSubmit = async (car) => {
         try {
             if (carForUpdate) {
@@ -18,9 +25,8 @@ const CarForm = ({setNewCar, carForUpdate, setCarForUpdate, setUpdatedCar}) => {
                 setNewCar(car);
             }
             reset();
-            setError({});
         } catch (e) {
-            setError(e.response.data);
+            console.error(e.response.data);
         }
     };
 
@@ -37,18 +43,17 @@ const CarForm = ({setNewCar, carForUpdate, setCarForUpdate, setUpdatedCar}) => {
         <form className={'car-form-box'} onSubmit={handleSubmit(onSubmit)}>
             <div className={'input-box'}><label><input type="text" {...register('model')}
                                                        placeholder={'Model'}/></label></div>
-            {error.model && <span className={'error'}>{error.model[0]}</span>}
+            {errors.model && <span className={'error'}>{errors.model.message}</span>}
             <div className={'input-box'}><label><input type="number" {...register('price')}
                                                        placeholder={'Price'}/></label></div>
-            {error.price && <span className={'error'}>{error.price[0]}</span>}
+            {errors.price && <span className={'error'}>{errors.price.message}</span>}
 
             <div className={'input-box'}><label><input type="number" {...register('year')}
                                                        placeholder={'Year'}/></label></div>
-            {error.year && <span className={'error'}>{error.year[0]}</span>}
+            {errors.year && <span className={'error'}>{errors.year.message}</span>}
             <button>{carForUpdate ? 'UPDATE' : 'SAVE'}</button>
         </form>
     )
 }
-
 
 export {CarForm};
