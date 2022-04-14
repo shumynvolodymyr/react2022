@@ -12,12 +12,11 @@ const CarForm = ({setNewCar, carForUpdate, setCarForUpdate, setUpdatedCar}) => {
                 const {data} = await carService.updateCar(carForUpdate.id, car);
                 setUpdatedCar(data);
                 setCarForUpdate(false);
-                reset();
             } else {
                 await carService.createCar(car);
                 setNewCar(car);
-                reset();
             }
+            reset();
         } catch (e) {
 
         }
@@ -30,7 +29,7 @@ const CarForm = ({setNewCar, carForUpdate, setCarForUpdate, setUpdatedCar}) => {
             setValue('price', price);
             setValue('year', year);
         }
-    }, [carForUpdate]);
+    }, [carForUpdate, setValue]);
 
     return (
         <form className={'car-form-box'} onSubmit={handleSubmit(onSubmit)}>

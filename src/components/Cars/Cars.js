@@ -9,19 +9,19 @@ const Cars = ({newCar, setCarForUpdate, updatedCar}) => {
 
     useEffect(() => {
         carService.getCars().then(({data}) => setCars([...data]));
-    }, []);
+        if (newCar) {
+            setCars([...cars, newCar]);
+        }
+    }, [newCar]);
 
     useEffect(() => {
-        if (newCar) {
-            setCars(prevState => [...prevState, newCar])
-        }
         if (updatedCar) {
             const car = cars.find(car => car.id === updatedCar.id);
             Object.assign(car, updatedCar);
             setCars([...cars]);
 
         }
-    }, [cars, newCar, updatedCar])
+    }, [updatedCar])
 
     return (
         <div className={'cars-box'}>
