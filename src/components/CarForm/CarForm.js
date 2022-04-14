@@ -13,7 +13,7 @@ const CarForm = ({setNewCar, carForUpdate, setCarForUpdate, setUpdatedCar}) => {
         handleSubmit,
         setValue,
         formState: {errors}
-    } = useForm({resolver: joiResolver(carValidator)});
+    } = useForm({resolver: joiResolver(carValidator), mode: "onTouched"});
     const onSubmit = async (car) => {
         try {
             if (carForUpdate) {
