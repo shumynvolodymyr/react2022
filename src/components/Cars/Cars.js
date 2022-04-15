@@ -9,9 +9,6 @@ const Cars = ({newCar, setCarForUpdate, updatedCar}) => {
 
     useEffect(() => {
         carService.getCars().then(({data}) => setCars([...data]));
-        if (newCar) {
-            setCars([...cars, newCar]);
-        }
     }, [newCar]);
 
     useEffect(() => {

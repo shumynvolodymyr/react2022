@@ -1,7 +1,7 @@
-import {CarForm, Cars} from './components';
-import './App.css'
 import {useState} from 'react';
 
+import {CarForm, Cars} from './components';
+import './App.css'
 
 const App = () => {
     const [newCar, setNewCar] = useState(null);

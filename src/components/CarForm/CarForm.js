@@ -14,6 +14,7 @@ const CarForm = ({setNewCar, carForUpdate, setCarForUpdate, setUpdatedCar}) => {
         setValue,
         formState: {errors}
     } = useForm({resolver: joiResolver(carValidator), mode: "onTouched"});
+
     const onSubmit = async (car) => {
         try {
             if (carForUpdate) {
@@ -41,16 +42,27 @@ const CarForm = ({setNewCar, carForUpdate, setCarForUpdate, setUpdatedCar}) => {
 
     return (
         <form className={'car-form-box'} onSubmit={handleSubmit(onSubmit)}>
-            <div className={'input-box'}><label><input type="text" {...register('model')}
-                                                       placeholder={'Model'}/></label></div>
+            <div className={'input-box'}>
+                <label>
+                    <input type="text" {...register('model')} placeholder={'Model'}/>
+                </label>
+            </div>
             {errors.model && <span className={'error'}>{errors.model.message}</span>}
-            <div className={'input-box'}><label><input type="number" {...register('price')}
-                                                       placeholder={'Price'}/></label></div>
+
+            <div className={'input-box'}>
+                <label>
+                    <input type="number" {...register('price')} placeholder={'Price'}/>
+                </label>
+            </div>
             {errors.price && <span className={'error'}>{errors.price.message}</span>}
 
-            <div className={'input-box'}><label><input type="number" {...register('year')}
-                                                       placeholder={'Year'}/></label></div>
+            <div className={'input-box'}>
+                <label>
+                    <input type="number" {...register('year')} placeholder={'Year'}/>
+                </label>
+            </div>
             {errors.year && <span className={'error'}>{errors.year.message}</span>}
+
             <button>{carForUpdate ? 'UPDATE' : 'SAVE'}</button>
         </form>
     )
