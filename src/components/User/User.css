@@ -1,0 +1,30 @@
+.user-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-box:hover {
+    background: #f5f2f1;
+}
+
+.user-box h1 {
+    width: 80%;
+}
+
+.user-box a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    height: 50px;
+    font-size: large;
+    text-decoration: none;
+    border-radius: 15px;
+    background: linear-gradient(orange, orangered);
+    color: white;
+}
+
+.user-box a:hover {
+    color: black;
+}
