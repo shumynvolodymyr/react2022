@@ -1,0 +1,26 @@
+.post-details-box {
+    padding: 10px;
+    margin: 10px;
+}
+
+.post-details-box a {
+    border: 1px solid silver;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 10px;
+    background: linear-gradient(orange, orangered);
+    color: white;
+    margin-left: 45%;
+}
+
+.post-details-box a:hover {
+    color: black;
+}
+
+.post-container {
+    width: 66%;
+    border: 1px solid silver;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px 0 #000000, inset 4px 4px 15px 0 #000000, 8px 7px 28px 15px rgba(0, 0, 0, 0.55);
+}

@@ -1,0 +1,30 @@
+.post-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-box:hover {
+    background: #f5f2f1;
+}
+
+.post-box h1 {
+    width: 80%;
+}
+
+.post-box a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    height: 50px;
+    font-size: large;
+    text-decoration: none;
+    border-radius: 15px;
+    background: linear-gradient(orange, orangered);
+    color: white;
+}
+
+.post-box a:hover {
+    color: black;
+}

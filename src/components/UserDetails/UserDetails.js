@@ -1,52 +1,54 @@
-import {useLocation, Link, Outlet} from 'react-router-dom';
+import {useLocation, Link, Outlet, useParams} from 'react-router-dom';
 
 import './UserDetails.css';
+import {useEffect, useState} from 'react';
+import {userService} from '../../services';
 
 const UserDetails = () => {
-    const {state: user} = useLocation();
+    const {state} = useLocation();
+    const [user, setUser] = useState(state);
+    const {id} = useParams();
 
-    const {
-        id,
-        name,
-        username,
-        email,
-        address: {street, suite, city, zipcode, geo: {lat, lng}},
-        phone,
-        website,
-        company: {name: companyName, catchPhrase, bs}
-    } = user;
+    useEffect(() => {
+        if (!state) {
+            userService.getUserById(id).then(({data}) => setUser(data));
+        } else {
+            setUser(state);
+        }
+    }, [id, state]);
 
     return (
         <div className={'container'}>
-            <div className={'user-details-box'}>
-                <h1>{id}. {name} {username}</h1>
-                <p>Email: {email}</p>
-                <p>Phone: {phone}</p>
-                <p>Website: {website}</p>
-                <p> Address:</p>
-                <ul>
-                    <li>Street: {street}</li>
-                    <li>Suite: {suite}</li>
-                    <li>City: {city}</li>
-                    <li>Zipcode: {zipcode}</li>
-                </ul>
-                <p> Geo:</p>
-                <ul>
-                    <li>lat: {lat}</li>
-                    <li>lng: {lng}</li>
-                </ul>
-                <p>Company:</p>
-                <ul>
-                    <li>name: {companyName}</li>
-                    <li>catchPhrase: {catchPhrase}</li>
-                    <li>bs: {bs}</li>
-                </ul>
-                <Link to={'posts'} state={user}>Posts of user</Link>
-            </div>
+            {user &&
+                <div className={'user-details-box'}>
+                    <h1>{id}. {user.name} {user.username}</h1>
+                    <p>Email: {user.email}</p>
+                    <p>Phone: {user.phone}</p>
+                    <p>Website: {user.website}</p>
+                    <p> Address:</p>
+                    <ul>
+                        <li>Street: {user.address.street}</li>
+                        <li>Suite: {user.address.suite}</li>
+                        <li>City: {user.address.city}</li>
+                        <li>Zipcode: {user.address.zipcode}</li>
+                    </ul>
+                    <p> Geo:</p>
+                    <ul>
+                        <li>lat: {user.address.geo.lat}</li>
+                        <li>lng: {user.address.geo.lng}</li>
+                    </ul>
+                    <p>Company:</p>
+                    <ul>
+                        <li>name: {user.company.name}</li>
+                        <li>catchPhrase: {user.company.catchPhrase}</li>
+                        <li>bs: {user.company.bs}</li>
+                    </ul>
+                    <Link to={'posts'} state={user}>Posts of user</Link>
+                </div>
+            }
             <Outlet/>
         </div>
     )
-        ;
 }
 
 export {UserDetails};
