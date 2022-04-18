@@ -1,7 +1,7 @@
-import {useLocation, Link, Outlet, useParams} from 'react-router-dom';
+import {useLocation, Outlet, useParams, Link} from 'react-router-dom';
+import {useEffect, useState} from 'react';
 
 import './UserDetails.css';
-import {useEffect, useState} from 'react';
 import {userService} from '../../services';
 
 const UserDetails = () => {
@@ -12,8 +12,6 @@ const UserDetails = () => {
     useEffect(() => {
         if (!state) {
             userService.getUserById(id).then(({data}) => setUser(data));
-        } else {
-            setUser(state);
         }
     }, [id, state]);
 
@@ -43,7 +41,7 @@ const UserDetails = () => {
                         <li>catchPhrase: {user.company.catchPhrase}</li>
                         <li>bs: {user.company.bs}</li>
                     </ul>
-                    <Link to={'posts'} state={user}>Posts of user</Link>
+                    <Link to={'posts'}>Posts of user</Link>
                 </div>
             }
             <Outlet/>

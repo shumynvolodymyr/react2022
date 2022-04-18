@@ -12,8 +12,6 @@ const PostDetails = () => {
     useEffect(() => {
         if (!state) {
             postsService.getPostById(id).then(({data}) => setPost(data));
-        } else {
-            setPost(state);
         }
     }, [id, state])
 
@@ -23,7 +21,7 @@ const PostDetails = () => {
                 <h1>{id}. {post.title}</h1>
                 <h2>UserId: {post.userId}</h2>
                 <p><i>Body:</i> {post.body}</p>
-                <Link to={'comments'} state={post}>Comments of post</Link>
+                <Link to={'comments'}>Comments of post</Link>
             </div>}
             <Outlet/>
         </div>
