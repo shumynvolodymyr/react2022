@@ -1,0 +1,20 @@
+.content{
+ display: flex;
+ justify-content: center;
+ gap: 50px;
+ padding: 40px;
+}
+
+.counter{
+ width: 30%;
+display: flex;
+ justify-content: space-evenly;
+}
+
+input, button{
+ border-radius: 5px;
+ box-shadow: inset -1px 3px 8px 5px rgba(31, 135, 255, 0.4), 2px 5px 16px 0 #0B325E, 5px 5px 22px 5px rgba(0,0,0,0.3);
+ color: orangered;
+ font-size: large;
+ font-weight: bold;
+}
