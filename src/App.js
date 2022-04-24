@@ -21,7 +21,7 @@ function App() {
             <div className="App">
                 <Outlet/>
                 <Routes>
-                    <Route path={'/'} element={<MainLayout dispatch={dispatch} state={state}/>}/>
+                    <Route path={'/'} element={<MainLayout/>}/>
                     <Route path={'/dogs'} element={<Dogs/>}/>
                     <Route path={'/cats'} element={<Cats/>}/>
                 </Routes>
