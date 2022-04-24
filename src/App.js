@@ -1,27 +1,32 @@
-import {useReducer} from "react";
+import {createContext, useReducer} from "react";
 import {reducer} from "./reducer/reducer";
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route, Outlet} from 'react-router-dom';
 
 import {MainLayout} from "./layouts";
-import {DogsPage, CatsPage} from "./pages";
+import {Cats, Dogs} from './components';
+import './App.css'
 
 const initialState = {
     cats: [],
     dogs: []
 };
 
+export const MyContext = createContext(null);
+
 function App() {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     return (
-        <div className="App">
-            <Routes>
-                <Route path={'/'} element={<MainLayout dispatch={dispatch} state={state}/>}>
-                    <Route path={'dogs'} element={<DogsPage/>}/>
-                    <Route path={'cats'} element={<CatsPage/>}/>
-                </Route>
-            </Routes>
-        </div>
+        <MyContext.Provider value={{state, dispatch}}>
+            <div className="App">
+                <Outlet/>
+                <Routes>
+                    <Route path={'/'} element={<MainLayout dispatch={dispatch} state={state}/>}/>
+                    <Route path={'/dogs'} element={<Dogs/>}/>
+                    <Route path={'/cats'} element={<Cats/>}/>
+                </Routes>
+            </div>
+        </MyContext.Provider>
     );
 }
 
