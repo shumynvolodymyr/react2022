@@ -1,7 +1,8 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
-    dogs: []
+    dogs: [],
+    dataToUpdate: false
 };
 
 const dogsSlice = createSlice({
@@ -17,6 +18,15 @@ const dogsSlice = createSlice({
         deleteDog: (state, action) => {
             const index = state.dogs.findIndex(value => value.id === action.payload.id);
             state.dogs.splice(index, 1)
+        },
+        updateDogInputValue: (state, action) => {
+            const {id, name} = action.payload;
+            state.dataToUpdate = {id, name};
+        },
+        updateDog: (state, action) => {
+            const index = state.dogs.findIndex(value => value.id === state.dataToUpdate.id);
+            state.dogs[index].name = action.payload.name;
+            state.dataToUpdate = false;
         }
     }
 });
@@ -24,5 +34,7 @@ const dogsSlice = createSlice({
 export default dogsSlice;
 export const {
     addDog,
-    deleteDog
+    deleteDog,
+    updateDog,
+    updateDogInputValue
 } = dogsSlice.actions;

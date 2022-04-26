@@ -1,7 +1,8 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
-    cats: []
+    cats: [],
+    dataToUpdate: false
 };
 
 const catsSlice = createSlice({
@@ -17,6 +18,15 @@ const catsSlice = createSlice({
         deleteCat: (state, action) => {
             const index = state.cats.findIndex(value => value.id === action.payload.id);
             state.cats.splice(index, 1)
+        },
+        updateCatInputValue: (state, action) => {
+            const {id, name} = action.payload;
+            state.dataToUpdate = {id, name};
+        },
+        updateCat: (state, action) => {
+            const index = state.cats.findIndex(value => value.id === state.dataToUpdate.id);
+            state.cats[index].name = action.payload.name;
+            state.dataToUpdate = false;
         }
     }
 });
@@ -24,5 +34,7 @@ const catsSlice = createSlice({
 export default catsSlice;
 export const {
     addCat,
-    deleteCat
+    deleteCat,
+    updateCat,
+    updateCatInputValue
 } = catsSlice.actions;

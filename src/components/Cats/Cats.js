@@ -8,7 +8,7 @@ const Cats = () => {
 
     return (
         <div className={'cats-box'}>
-            <Form name={'cat'}/>
+            <Form name={'cats'}/>
             {cats.map(value => <Cat key={value.id} cat={value}/>)}
         </div>
     );

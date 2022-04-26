@@ -9,7 +9,7 @@ const Dogs = () => {
 
     return (
         <div className={'dogs-box'}>
-            <Form name={'dog'}/>
+            <Form name={'dogs'}/>
             {dogs.map(dog => <Dog key={dog.id} dog={dog}/>)}
         </div>
     );

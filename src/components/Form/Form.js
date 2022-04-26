@@ -1,21 +1,32 @@
 import {useRef} from "react";
-import {useDispatch} from 'react-redux';
-import {addCat, addDog} from '../../redux/slices';
+import {useDispatch, useSelector} from 'react-redux';
+import {addCat, addDog, updateCat, updateDog} from '../../redux/slices';
 
 const Form = ({name}) => {
     const dispatch = useDispatch();
-    const inputData = useRef();
+    const {dataToUpdate} = useSelector(state => state[name]);
+    let inputData = useRef();
+    if (dataToUpdate) {
+        inputData.current.value = dataToUpdate.name
+    }
 
     const saveData = (e) => {
         e.preventDefault();
-        dispatch(name === 'cat' ? addCat({name: inputData.current.value}) : addDog({name: inputData.current.value}));
+        dispatch(name === 'cats' ? addCat({name: inputData.current.value}) : addDog({name: inputData.current.value}));
+        inputData.current.value = '';
+    }
+
+    const updateData = (e) => {
+        e.preventDefault();
+        dispatch(name === 'cats' ? updateCat({name: inputData.current.value}) : updateDog({name: inputData.current.value}));
+        inputData.current.value = '';
     }
 
     return (
         <div className={'forms-box'}>
-            <form onSubmit={saveData}>
+            <form onSubmit={!dataToUpdate ? saveData : updateData}>
                 <label><input type="text" ref={inputData} placeholder={name}/></label>
-                <button>ADD</button>
+                <button>{dataToUpdate ? 'SAVE' : 'ADD'}</button>
             </form>
         </div>
     );
