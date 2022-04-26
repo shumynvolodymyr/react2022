@@ -21,7 +21,7 @@ const catsSlice = createSlice({
     }
 });
 
-export default catsSlice.reducer;
+export default catsSlice;
 export const {
     addCat,
     deleteCat

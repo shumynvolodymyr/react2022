@@ -1,8 +1,11 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
-import catsReducer from './slices/cats.slice';
-import dogsReducer from './slices/dogs.slice';
+import catsSlice from './slices/cats.slice';
+import dogsSlice from './slices/dogs.slice';
 
-const rootReducers = combineReducers({cats: catsReducer, dogs: dogsReducer});
+const rootReducers = combineReducers({
+    cats: catsSlice.reducer,
+    dogs: dogsSlice.reducer
+});
 
 export const store = configureStore({
     reducer: rootReducers

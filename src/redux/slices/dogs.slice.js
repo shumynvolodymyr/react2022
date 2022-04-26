@@ -21,7 +21,7 @@ const dogsSlice = createSlice({
     }
 });
 
-export default dogsSlice.reducer;
+export default dogsSlice;
 export const {
     addDog,
     deleteDog
