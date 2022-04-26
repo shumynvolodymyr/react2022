@@ -1,20 +1,17 @@
+import {useSelector} from 'react-redux';
+
 import {Form} from "../Form/Form";
-import {ADD_DOG} from "../../constants";
-import {Dog} from "../";
-import {MyContext} from '../../App';
+import {Dog} from '../Dog/Dog';
 import './Dogs.css';
 
 const Dogs = () => {
+    const {dogs} = useSelector(state => state.dogs);
+
     return (
-        <MyContext.Consumer>
-            {
-                ({state: {dogs}, dispatch}) =>
-                    <div className={'dogs-box'}>
-                        <Form name={'dog'} dispatch={dispatch} type={ADD_DOG}/>
-                        {dogs.map(dog => <Dog key={dog.id} dog={dog} dispatch={dispatch}/>)}
-                    </div>
-            }
-        </MyContext.Consumer>
+        <div className={'dogs-box'}>
+            <Form name={'dog'}/>
+            {dogs.map(dog => <Dog key={dog.id} dog={dog}/>)}
+        </div>
     );
 };
 

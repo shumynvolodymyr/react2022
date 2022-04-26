@@ -1,11 +1,14 @@
 import {useRef} from "react";
+import {useDispatch} from 'react-redux';
+import {addCat, addDog} from '../../redux/slices';
 
-const Form = ({name,type, dispatch}) => {
-    let inputData = useRef();
+const Form = ({name}) => {
+    const dispatch = useDispatch();
+    const inputData = useRef();
 
     const saveData = (e) => {
         e.preventDefault();
-        dispatch({type, payload: inputData.current.value})
+        dispatch(name === 'cat' ? addCat({name: inputData.current.value}) : addDog({name: inputData.current.value}));
     }
 
     return (
