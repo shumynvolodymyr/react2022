@@ -1,0 +1,41 @@
+input {
+    width: 65%;
+    height: 40px;
+    text-align: center;
+    border: 1px solid silver;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px 0 #000000, inset 4px 4px 15px 0 #000000;
+    font-weight: bold;
+}
+
+.car-form-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    width: 96%;
+    padding: 20px;
+    border: 1px solid silver;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px 0 #000000, inset 4px 4px 15px 0 #000000, 8px 7px 28px 15px rgba(0, 0, 0, 0.55);
+}
+
+.car-form-box button {
+    width: 65%;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px 0 #000000, inset 4px 4px 10px 0 rgba(0, 0, 0, 0.62), 8px 7px 28px 15px rgba(0, 0, 0, 0.29);
+    background: linear-gradient(orangered, orange);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.car-form-box button:hover {
+    background: linear-gradient(orange, orangered);
+}
+
+.error {
+    color: red;
+    width: 100%;
+    text-align: center;
+}

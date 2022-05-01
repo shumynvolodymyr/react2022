@@ -3,37 +3,54 @@ import {carService} from '../../services';
 
 const initialState = {
     cars: [],
-    carForUpdate: false
+    carForUpdate: false,
+    formErrors: {},
 };
 
 const getCars = createAsyncThunk(
     'getCars',
     async () => {
-        const {data} = await carService.getCars();
-        return data;
+        try {
+            const {data} = await carService.getCars();
+            return data;
+        } catch (e) {
+            console.error(e);
+        }
     }
 );
 
 const deleteCar = createAsyncThunk(
     'deleteCar',
     async ({id}, {dispatch}) => {
-        await carService.deleteCarById(id);
-        dispatch(deleteById({id}));
+        try {
+            await carService.deleteCarById(id);
+            dispatch(deleteById({id}));
+        } catch (e) {
+            console.error(e);
+        }
     }
 );
 const updateCar = createAsyncThunk(
     'updateCar',
-    async ({id, car}, {dispatch}) => {
-        await carService.updateCarById(id, car);
-        dispatch(updateById({id, car}));
+    async ({id, car}, {dispatch, rejectWithValue}) => {
+        try {
+            await carService.updateCarById(id, car);
+            dispatch(updateById({id, car}));
+        } catch (e) {
+            return rejectWithValue({formErrors: e.response.data});
+        }
     }
 );
 
 const createCar = createAsyncThunk(
     'createCar',
-    async ({car}, {dispatch}) => {
-        const {data} = await carService.createCar(car);
-        dispatch(createNewCar(data));
+    async ({car}, {dispatch, rejectWithValue}) => {
+        try {
+            const {data} = await carService.createCar(car);
+            dispatch(createNewCar(data));
+        } catch (e) {
+            return rejectWithValue({formErrors: e.response.data});
+        }
     }
 );
 
@@ -65,6 +82,14 @@ const carSlice = createSlice({
         builder
             .addCase(getCars.fulfilled, ((state, action) => {
                 state.cars = action.payload;
+            }))
+            .addCase(createCar.rejected, ((state, action) => {
+                const {formErrors} = action.payload;
+                state.formErrors = formErrors;
+            }))
+            .addCase(updateCar.rejected, ((state, action) => {
+                const {formErrors} = action.payload;
+                state.formErrors = formErrors;
             }))
     }
 })

@@ -1,0 +1,16 @@
+.cars-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    width: 96%;
+    padding: 20px;
+    border: 1px solid silver;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px 0 #000000, inset 4px 4px 15px 0 #000000, 8px 7px 28px 15px rgba(0, 0, 0, 0.55);
+}
+
+.car-box-info {
+    width: 100%;
+    text-align: center;
+}
